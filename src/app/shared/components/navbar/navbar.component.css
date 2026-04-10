@@ -1,0 +1,75 @@
+.custom-navbar {
+  background: linear-gradient(to right, #ffffff, #fff5f8);
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Toggle button */
+.toggle-btn {
+  background-color: #C2185B;
+  border: none;
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #AD1457;
+  transform: scale(1.05);
+}
+
+/* Title */
+.page-title {
+  font-size: 18px;
+  color: #970747;
+}
+
+/* Icons */
+.nav-icon {
+  cursor: pointer;
+  color: #af0c0c;
+  transition: 0.3s;
+}
+
+.nav-icon:hover {
+  color: #C2185B;
+  transform: scale(1.1);
+}
+
+/* User box */
+.user-box {
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.user-box:hover {
+  background-color: #f8f9fa;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  border-radius: 10px;
+  padding: 8px 0;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  transition: 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+.navbar {
+  z-index: 1000;
+}

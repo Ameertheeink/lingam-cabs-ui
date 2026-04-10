@@ -1,0 +1,149 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+    <i class="bi bi-card-heading me-2"></i>
+    {{ registrationData ? 'Edit' : 'Add' }} Vehicle Registration
+  </h5>
+  <button type="button" class="btn-close" (click)="activeRegistrationModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <div *ngIf="isProcessing" class="text-center mb-3">
+    <div class="spinner-border text-primary spinner-border-sm me-2"></div>
+    <span class="text-muted small">Processing Document with AI...</span>
+  </div>
+
+  <form [formGroup]="registrationForm">
+    
+    <h6 class="text-primary border-bottom pb-2 mb-3">Registration & Identification</h6>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Registration Number </label>
+        <input type="text" class="form-control" formControlName="registrationNumber" placeholder="e.g. TN23DA3602">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Registration Date [cite: 10]</label>
+        <input type="date" class="form-control" formControlName="registrationDate">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Chassis Number </label>
+        <input type="text" class="form-control text-uppercase" formControlName="chassisNumber">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Engine Number </label>
+        <input type="text" class="form-control text-uppercase" formControlName="engineNumber">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Registration Authority [cite: 56]</label>
+        <input type="text" class="form-control" formControlName="registrationAuthority">
+      </div>
+    </div>
+
+    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">Vehicle Specifications</h6>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Maker's Name [cite: 32]</label>
+        <input type="text" class="form-control" formControlName="makersName">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Model Name [cite: 34]</label>
+        <input type="text" class="form-control" formControlName="modelName">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Fuel Type </label>
+        <input type="text" class="form-control" formControlName="fuelType">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Colour [cite: 36]</label>
+        <input type="text" class="form-control" formControlName="colour">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Cubic Capacity [cite: 51]</label>
+        <input type="number" class="form-control" formControlName="cubicCapacity">
+      </div>
+    </div>
+
+    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">Owner Information</h6>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Owner Name </label>
+        <input type="text" class="form-control" formControlName="ownerName">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">S/W/D of [cite: 16]</label>
+        <input type="text" class="form-control" formControlName="fatherOrHusbandName">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Full Address [cite: 23]</label>
+        <textarea class="form-control" formControlName="address" rows="2"></textarea>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Pin Code [cite: 26]</label>
+        <input type="text" class="form-control" formControlName="pinCode">
+      </div>
+    </div>
+
+    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">RC Document</h6>
+    <div class="row">
+      <div class="col-12">
+        <div class="p-3 border rounded bg-light">
+          <label class="form-label fw-semibold">Upload Scanned RC (AI Auto-Fill Enabled)</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*,application/pdf">
+          <div class="form-text">Uploading a clear image of your RC will automatically fill the fields above.</div>
+        </div>
+      </div>
+    </div>
+
+     <div class="col-12 mt-3">
+  <div class="p-3 border border-dashed rounded bg-light text-center">
+    <label class="form-label fw-semibold d-block">
+      <i class="bi bi-cloud-arrow-up text-primary"></i> 
+      {{ selectedFile || registrationData?.documentPath ? 'Replace Policy Document' : 'Scan Policy for Auto-Fill' }}
+    </label>
+    
+    <input type="file" class="form-control form-control-sm" 
+           (change)="onFileSelected($event)" 
+           accept="image/*,application/pdf">
+    
+    <div *ngIf="selectedFile" class="mt-2 p-2 bg-white border rounded d-flex align-items-center justify-content-between shadow-sm">
+      <div class="small text-success">
+        <i class="bi bi-file-earmark-check-fill me-1"></i>
+        <strong>Staged:</strong> {{ selectedFile.name }}
+      </div>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0" (click)="selectedFile = null">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+
+    <div *ngIf="registrationData?.documentPath && !selectedFile" class="mt-2 small d-flex justify-content-center align-items-center">
+      <span class="text-muted me-2">
+        <i class="bi bi-check-circle-fill text-success"></i> Existing document available
+      </span>
+      <button type="button" class="btn btn-outline-primary btn-xs py-0 px-2" (click)="viewExisting()">
+        <i class="bi bi-eye me-1"></i> View
+      </button>
+    </div>
+  </div>
+</div>
+  </form>
+</div>
+
+<div class="modal-footer bg-light">
+  <button *ngIf="registrationData?.id" class="btn btn-outline-info me-auto" (click)="viewExisting()">
+    <i class="bi bi-eye"></i> View Current RC
+  </button>
+  <button class="btn btn-secondary" (click)="activeRegistrationModal.dismiss()">Cancel</button>
+  <button class="btn btn-primary px-4" [disabled]="registrationForm.invalid || isProcessing" (click)="save()">
+    <i class="bi bi-check-circle me-1"></i> Save Registration
+  </button>
+</div>

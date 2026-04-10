@@ -1,0 +1,96 @@
+.btn-primary {
+  background-color: #970747;
+  border-color: #970747;
+}
+
+.btn-primary:hover {
+  background-color: #7a0639;
+  border-color: #7a0639;
+}
+
+
+.btn-view {
+  background-color: #ffffff;
+  border: 1px solid var(--primary-main);
+  color: var(--primary-main);
+}
+
+.btn-view:hover {
+  background-color: var(--primary-main);
+  color: #ffffff;
+}
+
+.btn-edit {
+  background-color: #FFC107;
+  border: none;
+  color: #000;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  border: none;
+  color: #ffffff;
+}
+.btn-add {
+  background-color: var(--primary-main);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.btn-add:hover {
+  background-color: var(--primary-dark);
+}
+
+.info-box {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.info-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.label {
+  font-size: 12px;
+  color: #8c8c8c;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 15px;
+  color: #212529;
+  text-align: right;
+  word-break: break-word;
+}
+
+@media (max-width: 576px) {
+
+  .info-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .value {
+    text-align: left;
+    margin-top: 4px;
+  }
+.info-content {
+  flex-direction: column;
+  align-items: flex-start;
+}
+}

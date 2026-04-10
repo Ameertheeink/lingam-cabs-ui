@@ -1,0 +1,27 @@
+.card {
+  border-radius: 14px;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.progress {
+  height: 8px;
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 6px 10px;
+}
+
+.no-data-container {           /* full screen height */
+  display: flex;
+  justify-content: center;    /* horizontal center */
+  align-items: center; 
+  text-align: center;  
+  height: 50vh;     /* vertical center */
+}

@@ -1,0 +1,105 @@
+<div class="top-0 end-0 m-2  text-end">
+  <div class="btn-group">
+
+    <!-- ✅ If NO oil → show Add -->
+    <button *ngIf="oil" class="btn btn-sm btn-primary m-2" (click)="openAddOilModal()" title="Add Oil Service">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+
+    <!-- ✅ If oil exists → show Edit -->
+    <button *ngIf="oil" class="btn btn-sm btn-warning m-2" (click)="openEditOilModal(oil, $event)" title="Edit Oil Service">
+      <i class="bi bi-pencil"></i>
+    </button>
+
+    <!-- ✅ If oil exists → show Delete -->
+  <button *ngIf="oil" class="btn btn-sm btn-danger m-2" (click)="openDeleteModal()" title="Delete Oil Service">
+  <i class="bi bi-trash"></i>
+</button>
+ <button *ngIf="oil" class="btn btn-sm btn-danger m-2" (click)="openOilHistoryModal()" title="View Oil Service History">
+  <i class="bi bi-clock-history"></i>
+</button>
+  </div>
+</div>
+
+<div *ngIf="oil; else noOilData">
+
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+
+      <div class="row g-3">
+
+
+        <!-- Last Service -->
+        <div class="col-12 col-md-6">
+          <div class="p-3 bg-light rounded h-100">
+            <small class="text-muted">Last Service</small>
+            <div class="fw-semibold">
+              {{ oil.lastServiceDate | date:'mediumDate' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Service KM -->
+        <div class="col-12 col-md-6">
+          <div class="p-3 bg-light rounded h-100">
+            <small class="text-muted">Service KM</small>
+            <div class="fw-semibold">
+              {{ oil.lastServiceKm }} KM
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="p-3 bg-light rounded h-100">
+            <small class="text-muted">Interval KM</small>
+            <div class="fw-semibold">
+              {{ oil.serviceIntervalKm }} KM
+            </div>
+          </div>
+        </div>
+        <!-- Oil Brand -->
+        <div class="col-12 col-md-6">
+          <div class="p-3 bg-light rounded h-100">
+            <small class="text-muted">Oil Brand</small>
+            <div class="fw-semibold">
+              {{ oil.oilBrand }} ({{ oil.oilQuantityLitres }} L)
+            </div>
+          </div>
+        </div>
+
+        <!-- Vendor -->
+        <div class="col-12 col-md-6">
+          <div class="p-3 bg-light rounded h-100">
+            <small class="text-muted">Vendor</small>
+            <div class="fw-semibold">
+              {{ oil.serviceVendor }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Next Service -->
+      <div class="mt-3 text-center">
+        <span class="badge bg-info px-3 py-2" title="Next Service Due at ">
+          Next Service Due at: {{ oil.nextDueKm }} KM
+        </span>
+      </div>
+
+      <!-- View Bill Button -->
+      <div class="mt-3 text-center" *ngIf="oil.serviceBillPath">
+        <button class="btn btn-primary btn-sm px-4" (click)="viewOilBill(oil)" title="View Oil Service Bill">
+          <i class="bi bi-file-earmark"></i> View Bill
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<ng-template #noOilData>
+  <p class="text-muted text-center mb-0">No oil service records found.</p>
+</ng-template>
+
+
+

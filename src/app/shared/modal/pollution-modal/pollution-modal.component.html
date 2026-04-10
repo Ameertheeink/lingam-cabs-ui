@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+  {{ pollutionData?.id ? 'Edit' : 'Add' }} Pollution Record
+</h5>
+  <button type="button" class="btn-close" (click)="activePollutionModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="pollutionForm">
+    <div class="row g-3">
+
+      <div class="col-md-12">
+        <label class="form-label">Certificate Number</label>
+        <input type="text" class="form-control" formControlName="certificateNumber" placeholder="Enter PUC Certificate No.">
+        <div class="text-danger small" *ngIf="pollutionForm.get('certificateNumber')?.touched && pollutionForm.get('certificateNumber')?.invalid">
+          Certificate number is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Issue Date</label>
+        <input type="date" class="form-control" formControlName="issueDate">
+        <div class="text-danger small" *ngIf="pollutionForm.get('issueDate')?.touched && pollutionForm.get('issueDate')?.invalid">
+          Issue date is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Expiry Date</label>
+        <input type="date" class="form-control" formControlName="expiryDate">
+        <div class="text-danger small" *ngIf="pollutionForm.get('expiryDate')?.touched && pollutionForm.get('expiryDate')?.invalid">
+          Expiry date is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Total Cost</label>
+        <input type="number" class="form-control" formControlName="cost" placeholder="0.00">
+        <div class="text-danger small" *ngIf="pollutionForm.get('cost')?.touched && pollutionForm.get('cost')?.invalid">
+          Valid cost is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Vendor / Center Name</label>
+        <input type="text" class="form-control" formControlName="vendor" placeholder="e.g. ABC Pollution Center">
+        <div class="text-danger small" *ngIf="pollutionForm.get('vendor')?.touched && pollutionForm.get('vendor')?.invalid">
+          Vendor name is required.
+        </div>
+      </div>
+
+      <div class="col-12 mt-3">
+        <label class="form-label fw-semibold">Upload Certificate (Optional)</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*,application/pdf">
+        <small class="text-muted" *ngIf="pollutionForm.get('documentName')?.value">
+          Current file: {{ pollutionForm.get('documentName')?.value }}
+        </small>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="activePollutionModal.dismiss()">Cancel</button>
+  <button class="btn btn-primary" [disabled]="pollutionForm.invalid" (click)="save()">
+    {{ pollutionData ? 'Update' : 'Save' }} Record
+  </button>
+</div>

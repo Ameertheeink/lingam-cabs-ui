@@ -1,0 +1,233 @@
+<div class="container-fluid mt-4">
+
+    <span class="display-5" >Vehicle Maintenance Dashboard</span>
+  <div class="row g-4 mt-3" *ngIf="hasAnyData(); else noData">
+
+    <!-- OIL CHANGE -->
+<div class="col-md-6 col-lg-4" *ngIf="oilReminder">
+  <div class="card shadow-sm border-start border-4 h-100"
+       [ngClass]="{
+         'border-success': oilReminder.status === 'SAFE',
+         'border-warning': oilReminder.status === 'DUE_SOON',
+         'border-danger': oilReminder.status === 'OVERDUE'
+       }">
+
+    <div class="card-body">
+
+      <!-- Header -->
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-droplet-half fs-2 me-3"
+           [ngClass]="{
+             'text-success': oilReminder.status === 'SAFE',
+             'text-warning': oilReminder.status === 'DUE_SOON',
+             'text-danger': oilReminder.status === 'OVERDUE'
+           }"></i>
+
+        <div>
+          <h6 class="mb-0">Oil Service Reminder</h6>
+          <small class="text-muted">{{ oilReminder.status }}</small>
+        </div>
+      </div>
+
+      <!-- Vehicle Info -->
+      <p class="fw-bold mb-1">
+        {{ oilReminder.vehicleNumber }}
+      </p>
+
+      <small class="text-muted">
+        Vehicle ID: {{ oilReminder.vehicleId }}
+      </small>
+
+      <!-- Progress -->
+      <div class="progress mt-3">
+        <div class="progress-bar"
+             role="progressbar"
+             [style.width.%]="oilReminder.remainingKm / 100"
+             [ngClass]="{
+               'bg-success': oilReminder.status === 'SAFE',
+               'bg-warning': oilReminder.status === 'DUE_SOON',
+               'bg-danger': oilReminder.status === 'OVERDUE'
+             }">
+        </div>
+      </div>
+
+      <!-- Remaining KM -->
+      <div class="mt-2 fw-semibold"
+           [ngClass]="{
+             'text-success': oilReminder.status === 'SAFE',
+             'text-warning': oilReminder.status === 'DUE_SOON',
+             'text-danger': oilReminder.status === 'OVERDUE'
+           }" >
+
+        {{ oilReminder.remainingKm }} KM Remaining
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <!-- TYRE CHANGE -->
+<div class="col-md-6 col-lg-4" *ngIf="tyreReminder">
+  <div class="card shadow-sm border-start border-4 h-100"
+       [ngClass]="{
+         'border-success': tyreReminder.status === 'SAFE',
+         'border-warning': tyreReminder.status === 'DUE_SOON',
+         'border-danger': tyreReminder.status === 'OVERDUE'
+       }">
+
+    <div class="card-body">
+
+      <!-- Header -->
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-circle fs-2 me-3"
+           [ngClass]="{
+             'text-success': tyreReminder.status === 'SAFE',
+             'text-warning': tyreReminder.status === 'DUE_SOON',
+             'text-danger': tyreReminder.status === 'OVERDUE'
+           }"></i>
+
+        <div>
+          <h6 class="mb-0">Tyre Service Reminder</h6>
+          <small class="text-muted">{{ tyreReminder.status }}</small>
+        </div>
+      </div>
+
+      <!-- Vehicle Info -->
+      <p class="fw-bold mb-1">
+        {{ tyreReminder.vehicleNumber }}
+      </p>
+
+      <small class="text-muted">
+        Vehicle ID: {{ tyreReminder.vehicleId }}
+      </small>
+
+      <!-- Progress -->
+      <div class="progress mt-3">
+        <div class="progress-bar"
+             role="progressbar"
+             [style.width.%]="tyreReminder.remainingKm / 100"
+             [ngClass]="{
+               'bg-success': tyreReminder.status === 'SAFE',
+               'bg-warning': tyreReminder.status === 'DUE_SOON',
+               'bg-danger': tyreReminder.status === 'OVERDUE'
+             }">
+        </div>
+      </div>
+
+      <!-- Remaining KM -->
+      <div class="mt-2 fw-semibold"
+           [ngClass]="{
+             'text-success': tyreReminder.status === 'SAFE',
+             'text-warning': tyreReminder.status === 'DUE_SOON',
+             'text-danger': tyreReminder.status === 'OVERDUE'
+           }">
+
+        {{ tyreReminder.remainingKm }} KM Remaining
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- INSURANCE -->
+    <div class="col-md-6 col-lg-4" *ngIf="insuranceReminder">
+      <div class="card shadow-sm border-start border-4 border-danger h-100"
+      [ngClass]="{
+         'border-success': insuranceReminder.status === 'SAFE',
+         'border-warning': insuranceReminder.status === 'DUE_SOON',
+         'border-danger': insuranceReminder.status === 'OVERDUE'
+       }">
+        <div class="card-body">
+
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-shield-check fs-2 text-danger me-3"   [ngClass]="{
+             'text-success': insuranceReminder.status === 'SAFE',
+             'text-warning': insuranceReminder.status === 'DUE_SOON',
+             'text-danger': insuranceReminder.status === 'OVERDUE'
+           }"></i>
+            <div>
+              <h6 class="mb-0">Insurance Renewal</h6>
+              <small class="text-muted">Expiring Soon</small>
+            </div>
+          </div>
+
+          <p class="fw-bold mb-1">{{insuranceReminder.vehicleNumber}}</p>
+          <small class="text-muted">Expiring on {{insuranceReminder.expiryDate  | date:'mediumDate'}}</small>
+
+          <div class="mt-3">
+            <span class="badge bg-danger">{{insuranceReminder.remainingDays}} Days Remaining</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- FC -->
+    <!-- <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm border-start border-4 border-warning h-100">
+        <div class="card-body">
+
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-file-earmark-medical fs-2 text-warning me-3"></i>
+            <div>
+              <h6 class="mb-0">FC Renewal</h6>
+              <small class="text-muted">Expiring Soon</small>
+            </div>
+          </div>
+
+          <p class="fw-bold mb-1">TN23 DA3602 (ID: 1023)</p>
+          <small class="text-muted">Expiring on 28/02/2026</small>
+
+          <div class="mt-3">
+            <span class="badge bg-warning text-dark">17 Days Remaining</span>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+    <!-- POLLUTION -->
+    <div class="col-md-6 col-lg-4" *ngIf="pollutionReminder">
+      <div class="card shadow-sm border-start border-4 border-success h-100"
+       [ngClass]="{
+         'border-success': pollutionReminder.status === 'SAFE',
+         'border-warning': pollutionReminder.status === 'DUE_SOON',
+         'border-danger': pollutionReminder.status === 'OVERDUE'
+       }">
+        <div class="card-body">
+
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-cloud-check fs-2 text-success me-3"  [ngClass]="{
+             'text-success': pollutionReminder.status === 'SAFE',
+             'text-warning': pollutionReminder.status === 'DUE_SOON',
+             'text-danger': pollutionReminder.status === 'OVERDUE'
+           }"></i>
+            <div>
+              <h6 class="mb-0">Pollution Certificate</h6>
+              <small class="text-muted">Valid</small>
+            </div>
+          </div>
+
+          <p class="fw-bold mb-1">TN23 DA3602 (ID: 1023)</p>
+          <small class="text-muted">Expiring on {{pollutionReminder.expiryDate}}</small>
+
+          <div class="mt-3">
+            <span class="badge bg-success">{{pollutionReminder.remainingDays}} Days Remaining</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div> 
+
+<ng-template #noData>
+  <div class="no-data-container">
+    <div class="text-center">
+      <h5 class="text-muted">🚫 No Reminders Available</h5>
+      <p class="text-muted">
+        Add vehicles to start tracking maintenance reminders
+      </p>
+    </div>
+  </div>
+</ng-template>
+</div>

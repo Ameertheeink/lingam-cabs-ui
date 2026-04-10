@@ -1,0 +1,104 @@
+{
+  "carBrands": [
+    {
+      "brand": "Toyota",
+      "models": [
+        "Innova",
+        "Fortuner",
+        "Corolla",
+        "Camry",
+        "Glanza",
+        "Urban Cruiser"
+      ]
+    },
+    {
+      "brand": "Hyundai",
+      "models": [
+        "i10",
+        "i20",
+        "Verna",
+        "Creta",
+        "Venue",
+        "Tucson"
+      ]
+    },
+    {
+      "brand": "Maruti Suzuki",
+      "models": [
+        "Alto",
+        "Swift",
+        "Baleno",
+        "Dzire",
+        "Brezza",
+        "Ertiga"
+      ]
+    },
+    {
+      "brand": "Honda",
+      "models": [
+        "City",
+        "Amaze",
+        "Civic",
+        "WR-V",
+        "CR-V"
+      ]
+    },
+    {
+      "brand": "Tata",
+      "models": [
+        "Nexon",
+        "Harrier",
+        "Safari",
+        "Altroz",
+        "Tiago"
+      ]
+    },
+    {
+      "brand": "Mahindra",
+      "models": [
+        "XUV300",
+        "XUV700",
+        "Scorpio",
+        "Bolero",
+        "Thar"
+      ]
+    },
+    {
+      "brand": "Kia",
+      "models": [
+        "Seltos",
+        "Sonet",
+        "Carens",
+        "Carnival"
+      ]
+    },
+    {
+      "brand": "Volkswagen",
+      "models": [
+        "Polo",
+        "Vento",
+        "Taigun",
+        "Virtus"
+      ]
+    },
+    {
+      "brand": "Skoda",
+      "models": [
+        "Rapid",
+        "Slavia",
+        "Kushaq",
+        "Octavia"
+      ]
+    },
+    {
+      "brand": "BMW",
+      "models": [
+        "X1",
+        "X3",
+        "X5",
+        "3 Series",
+        "5 Series"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+/* ===== Variables ===== */
+:root {
+  --primary-main: #970747;
+  --primary-light: #ee4792;
+  --primary-hover: #C2185B;
+  --primary-dark: #AD1457;
+  --surface-bg: #FFF5F9;
+}
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  color: #212529;
+}
+
+/* ===== Navbar ===== */
+
+
+ngx-loading-bar {
+  --loading-bar-color: #191970;
+  --loading-bar-height: 4px;
+}
+#wrapper {
+  height: 100vh;
+  overflow: hidden;
+}

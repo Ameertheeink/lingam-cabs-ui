@@ -1,0 +1,112 @@
+<div class="modal-header">
+  <h5 class="modal-title">Oil Service</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="oilForm">
+    <div class="row g-3">
+
+      <!-- Last Service KM -->
+      <div class="col-md-6">
+        <label>Last Service KM</label>
+        <input type="number" class="form-control" formControlName="lastServiceKm">
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('lastServiceKm')?.touched && oilForm.get('lastServiceKm')?.errors">
+          
+          <span *ngIf="oilForm.get('lastServiceKm')?.errors?.['required']">
+            Required
+          </span>
+          <span *ngIf="oilForm.get('lastServiceKm')?.errors?.['min']">
+            Cannot be negative
+          </span>
+        </small>
+      </div>
+
+      <!-- Service Interval KM -->
+      <div class="col-md-6">
+        <label>Service Interval KM</label>
+        <input type="number" class="form-control" formControlName="serviceIntervalKm">
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('serviceIntervalKm')?.touched && oilForm.get('serviceIntervalKm')?.errors">
+
+          <span *ngIf="oilForm.get('serviceIntervalKm')?.errors?.['required']">
+            Required
+          </span>
+          <span *ngIf="oilForm.get('serviceIntervalKm')?.errors?.['min']">
+            Minimum 500 km
+          </span>
+        </small>
+      </div>
+
+      <!-- Last Service Date -->
+      <div class="col-md-6">
+        <label>Last Service Date</label>
+        <input type="date" class="form-control" formControlName="lastServiceDate">
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('lastServiceDate')?.touched && oilForm.get('lastServiceDate')?.errors">
+          Required
+        </small>
+      </div>
+
+      <!-- Oil Brand Dropdown -->
+      <div class="col-md-6">
+        <label>Oil Brand</label>
+        <select class="form-select"
+                formControlName="brand"
+                (change)="onBrandSelect()">
+
+          <option value="">Select Oil Brand</option>
+          <option *ngFor="let b of engineOilData" [value]="b">
+            {{ b }}
+          </option>
+        </select>
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('brand')?.touched && oilForm.get('brand')?.errors">
+          Required
+        </small>
+      </div>
+
+      <!-- Quantity -->
+      <div class="col-md-6">
+        <label>Quantity (Litres)</label>
+        <input type="number" class="form-control" formControlName="oilQuantityLitres">
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('oilQuantityLitres')?.touched && oilForm.get('oilQuantityLitres')?.errors">
+          Required
+        </small>
+      </div>
+
+      <!-- Vendor -->
+      <div class="col-md-6">
+        <label>Vendor</label>
+        <input type="text" class="form-control" formControlName="serviceVendor">
+
+        <small class="text-danger"
+          *ngIf="oilForm.get('serviceVendor')?.touched && oilForm.get('serviceVendor')?.errors">
+          Required
+        </small>
+      </div>
+
+    </div>
+  </form>
+  <div class="col-12 mt-3">
+  <label class="fw-semibold">Upload Bill (Optional)</label>
+
+  <input type="file"
+         class="form-control"
+         (change)="onFileSelected($event)">
+
+  <small class="text-muted">PDF / Image allowed</small>
+</div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+  <button class="btn btn-primary"  [disabled]="oilForm.invalid" (click)="save()">Save</button>
+</div>

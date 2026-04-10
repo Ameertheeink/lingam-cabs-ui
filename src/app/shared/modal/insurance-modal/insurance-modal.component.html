@@ -1,0 +1,110 @@
+<div class="modal-header ">
+  <h5 class="modal-title ">
+    <i class="bi bi-shield-check me-2"></i>
+    {{ insuranceData ? 'Edit' : 'Add' }} Vehicle Insurance
+  </h5>
+  <button type="button" class="btn-close" (click)="activeInsuranceModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <div *ngIf="isProcessing" class="text-center my-3">
+    <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+    <span class="ms-2 text-muted small">Gemini AI is reading your document...</span>
+  </div>
+
+  <form [formGroup]="insuranceForm">
+    <div class="row g-3">
+      
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Policy Number</label>
+        <input type="text" class="form-control form-control-sm" formControlName="policyNumber" placeholder="e.g. 3397/04793814/000/00">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Insurance Company</label>
+        <input type="text" class="form-control form-control-sm" formControlName="provider" placeholder="e.g. Chola MS">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Policy Start Date</label>
+        <input type="date" class="form-control form-control-sm" formControlName="startDate">
+        <div class="text-danger x-small" *ngIf="insuranceForm.get('startDate')?.touched && insuranceForm.get('startDate')?.invalid">
+          Required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Policy End Date (Expiry)</label>
+        <input type="date" class="form-control form-control-sm" formControlName="expiryDate">
+      </div>
+       <div class="col-md-6">
+        <label class="form-label small fw-bold">Insurer Name</label>
+        <input type="text" class="form-control form-control-sm" formControlName="name" placeholder="e.g. John Doe">
+      </div>
+
+       <div class="col-md-6">
+        <label class="form-label small fw-bold">Mobile Number</label>
+        <input type="text" class="form-control form-control-sm" formControlName="mobileNumber" placeholder="e.g. 9876543210" maxlength="10">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label small fw-bold">Premium (₹)</label>
+        <input type="number" class="form-control form-control-sm" formControlName="premiumAmount">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label small fw-bold">Vehicle Value (IDV)</label>
+        <input type="number" class="form-control form-control-sm" formControlName="idv" placeholder="₹">
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label small fw-bold">Coverage</label>
+        <select class="form-select form-select-sm" formControlName="coverageType">
+          <option value="Comprehensive">Comprehensive</option>
+          <option value="Third Party">Third Party</option>
+        </select>
+      </div>
+
+ <div class="col-12 mt-3">
+  <div class="p-3 border border-dashed rounded bg-light text-center">
+    <label class="form-label fw-semibold d-block">
+      <i class="bi bi-cloud-arrow-up text-primary"></i> 
+      {{ selectedFile || insuranceData?.documentPath ? 'Replace Policy Document' : 'Scan Policy for Auto-Fill' }}
+    </label>
+    
+    <input type="file" class="form-control form-control-sm" 
+           (change)="onFileSelected($event)" 
+           accept="image/*,application/pdf">
+    
+    <div *ngIf="selectedFile" class="mt-2 p-2 bg-white border rounded d-flex align-items-center justify-content-between shadow-sm">
+      <div class="small text-success">
+        <i class="bi bi-file-earmark-check-fill me-1"></i>
+        <strong>Staged:</strong> {{ selectedFile.name }}
+      </div>
+      <button type="button" class="btn btn-link btn-sm text-danger p-0" (click)="selectedFile = null">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+
+    <div *ngIf="insuranceData?.documentPath && !selectedFile" class="mt-2 small d-flex justify-content-center align-items-center">
+      <span class="text-muted me-2">
+        <i class="bi bi-check-circle-fill text-success"></i> Existing document available
+      </span>
+      <button type="button" class="btn btn-outline-primary btn-xs py-0 px-2" (click)="viewExisting()">
+        <i class="bi bi-eye me-1"></i> View
+      </button>
+    </div>
+  </div>
+</div>
+      
+
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-sm btn-secondary" (click)="activeInsuranceModal.dismiss()">Cancel</button>
+  <button class="btn btn-sm btn-primary px-4" [disabled]="insuranceForm.invalid || isProcessing" (click)="save()">
+    <i class="bi bi-save me-1"></i> Save Record
+  </button>
+</div>

@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+    <i class="bi bi-circle me-2"></i>
+    Tyre Service History
+    
+  </h5>
+ <button type="button" class="btn-close " (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+
+  <!-- Loader -->
+  <div *ngIf="isProcessing" class="text-center my-3">
+    <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!isProcessing && tyreList.length > 0" class="table-responsive">
+    <table class="table table-bordered table-hover table-lg align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>SNo</th>
+          <th>Last Change KM</th>
+          <th>Interval KM</th>
+          <th>Last Service Date</th>
+          <th>Next Change Kms</th>
+          <th>Tyre Brand</th>
+        <th>Tyre Type</th>
+          <th>Tyre Cost</th>
+          <th>Vendor</th>
+          <th>Bill</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tyre of tyreList; let i = index">
+         <td class="fw-bold">{{ (currentPage - 1) * pageSize + (i + 1) }}</td>
+          <td>{{ tyre.changeKm }}</td>
+          <td>{{ tyre.serviceIntervalKm }}</td>
+          <td>{{ tyre.changeDate }}</td>
+          <td>{{ tyre.nextChangeKm }}</td>
+          <td>{{ tyre.tyreBrand }}</td>
+          <td>{{ tyre.tyreType }}</td>
+           
+          <td>{{ tyre.cost }}</td>
+          <td>{{ tyre.vendor }}</td>
+          <td>
+            <button class="btn btn-primary"*ngIf="tyre.billPath"
+               (click)="viewBill(tyre)"
+               class="btn btn-sm btn-outline-primary">
+              View
+            </button>
+            <span *ngIf="!tyre.billPath" class="text-muted">N/A</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+      <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="totalElements"
+      [(page)]="currentPage"
+      [pageSize]="pageSize"
+      [maxSize]="3"
+      [boundaryLinks]="true"
+      (pageChange)="loadTyreHistory($event)">
+    </ngb-pagination>
+
+    <small class="text-muted">Total Records: {{ totalElements }}</small>
+  </div>
+  </div>
+
+  <!-- No Data -->
+ <div *ngIf="!isProcessing && tyreList.length === 0" class="text-center text-muted">
+  No records found
+</div>
+
+</div>
+
+<div class="modal-footer">
+ <button class="btn btn-secondary btn-sm" (click)="activeModal.close()">Close</button>
+</div>

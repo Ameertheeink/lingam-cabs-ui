@@ -1,0 +1,17 @@
+.modal-header {
+  background: linear-gradient(90deg, var(--primary-main), var(--primary-light));
+  color: #ffffff;
+}
+
+.modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-footer .btn-danger {
+  min-width: 120px;
+}
+
+.modal-footer .btn-secondary {
+  min-width: 120px;
+}

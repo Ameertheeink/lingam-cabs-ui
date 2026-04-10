@@ -1,0 +1,19 @@
+<div class="d-flex" id="wrapper">
+
+  <app-sidebar 
+    [isCollapsed]="isCollapsed">
+  </app-sidebar>
+
+  <div class="content-wrapper">
+
+    <app-navbar 
+      (toggleEvent)="toggleSidebar()">
+    </app-navbar>
+
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

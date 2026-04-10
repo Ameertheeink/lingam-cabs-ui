@@ -1,0 +1,125 @@
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: var(--primary-main);
+  color: #ffffff;
+}
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table thead th {
+  font-weight: 600;
+  border: none;
+}
+
+.table tbody tr:hover {
+  background-color: #fff0f6;
+  transition: 0.2s ease;
+   transform: scale(1.01);
+}
+
+.table td {
+  vertical-align: middle;
+}
+.btn-view {
+  background-color: #ffffff;
+  border: 1px solid var(--primary-main);
+  color: var(--primary-main);
+}
+
+.btn-view:hover {
+  background-color: var(--primary-main);
+  color: #ffffff;
+}
+
+.btn-edit {
+  background-color: #FFC107;
+  border: none;
+  color: #000;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  border: none;
+  color: #ffffff;
+}
+.btn-add {
+  background-color: var(--primary-main);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.btn-add:hover {
+  background-color: var(--primary-dark);
+}
+
+.vehicle-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.modal-header {
+  background: linear-gradient(90deg, var(--primary-main), var(--primary-light));
+  color: #ffffff;
+  
+}
+.modal{
+    margin-top: 5%;
+}
+
+.modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-footer .btn-primary {
+  background-color: var(--primary-main);
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+
+  .table thead {
+    display: none;
+  }
+
+  .table, 
+  .table tbody, 
+  .table tr, 
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--primary-main);
+  }
+}

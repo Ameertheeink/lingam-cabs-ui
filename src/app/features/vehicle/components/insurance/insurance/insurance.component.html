@@ -1,0 +1,101 @@
+<div class="top-0 end-0 m-2 text-end">
+    <div class="btn-group">
+        <button *ngIf="!insurance" class="btn btn-sm btn-primary m-2" (click)="openInsuranceModal()" title="Add Insurance">
+             <i class="bi bi-plus-lg"></i>
+            
+        </button>
+
+        <button *ngIf="insurance" class="btn btn-sm btn-warning m-2" (click)="openInsuranceModal(insurance)"  title="Edit Insurance" >
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button *ngIf="insurance" class="btn btn-sm btn-danger m-2" (click)="openDeleteModal()" title="Delete Insurance">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="insurance else noInsuranceData">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <div class="row g-3">
+                
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Insurance Company</small>
+                        <div class="fw-semibold text-primary">{{insurance?.provider}}</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Policy Number</small>
+                        <div class="fw-semibold">{{insurance?.policyNumber}}</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Coverage Type</small>
+                        <div class="fw-semibold">{{insurance?.coverageType}}</div>
+                    </div>
+                </div>
+                   <div class="col-12 col-md-4">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Start Date</small>
+                        <!-- <div class="fw-semibold text-danger">{{ insurance.expiryDate | date:'dd/MM/yyyy' }}</div> -->
+                             <div class="fw-semibold text-danger">{{insurance?.startDate}}</div>
+                    </div>
+                </div>
+                   <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Insured Name</small>
+                        <div class="fw-semibold">{{insurance?.name}}</div>
+                    </div>
+                </div>
+                   <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Mobile Number</small>
+                        <div class="fw-semibold">{{insurance?.mobileNumber}}</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Expiry Date</small>
+                        <!-- <div class="fw-semibold text-danger">{{ insurance.expiryDate | date:'dd/MM/yyyy' }}</div> -->
+                             <div class="fw-semibold text-danger">{{insurance?.expiryDate}}</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="p-3 bg-light rounded h-100">
+                        <small class="text-muted">Premium Paid</small>
+                        <div class="fw-semibold">₹ {{insurance?.premiumAmount}}</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="p-2 border-start border-3 border-info ps-3">
+                        <small class="text-muted">Insured Declared Value (IDV)</small>
+                        <div class="fw-bold">₹ {{insurance?.idv}}</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-3 text-center">
+                <button class="btn btn-primary btn-sm px-4" (click)="viewPolicyDocument(insurance)" title="View Insurance policy " >
+                    <i class="bi bi-file-earmark-pdf"></i> View Policy Document
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noInsuranceData>
+    <div class="p-4 bg-light rounded text-center">
+        <i class="bi bi-shield-exclamation text-muted style='font-size: 2rem;'"></i>
+        <p class="text-muted mb-0">No insurance data found for this vehicle.</p>
+    </div>
+</ng-template>

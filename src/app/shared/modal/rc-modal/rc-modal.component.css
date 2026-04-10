@@ -1,0 +1,28 @@
+.modal-header {
+  background: linear-gradient(90deg, var(--primary-main), var(--primary-light));
+  color: #ffffff;
+}
+
+.modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-footer .btn-danger {
+  min-width: 120px;
+}
+
+.modal-footer .btn-secondary {
+  min-width: 120px;
+}
+
+.custom-modal-width .modal-dialog {
+  max-width: 90% !important;  /* 🔥 Increase width */
+}
+
+@media (min-width: 1400px) {
+  .custom-modal-width .modal-dialog {
+    max-width: 1200px;
+  }
+}
+

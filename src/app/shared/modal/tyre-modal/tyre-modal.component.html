@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ tyreData ? 'Edit' : 'Add' }} Tyre Service</h5>
+  <button type="button" class="btn-close" (click)="activeTyreModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="tyreForm">
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <label class="form-label">Last Tyre Changed on (KM)</label>
+        <input type="number" class="form-control" formControlName="changeKm">
+        <div class="text-danger small" *ngIf="tyreForm.get('changeKm')?.touched && tyreForm.get('changeKm')?.invalid">
+          Reading is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Change Date</label>
+        <input type="date" class="form-control" formControlName="changeDate">
+        <div class="text-danger small" *ngIf="tyreForm.get('changeDate')?.touched && tyreForm.get('changeDate')?.invalid">
+          Date is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Service Interval (KM)</label>
+        <input type="number" class="form-control" formControlName="serviceIntervalKm">
+        <div class="text-danger small" *ngIf="tyreForm.get('serviceIntervalKm')?.touched && tyreForm.get('serviceIntervalKm')?.invalid">
+          Min 500 km required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Tyre Brand</label>
+        <select class="form-select" formControlName="tyreBrand">
+          <option value="">Select Brand</option>
+          <option *ngFor="let b of tyreBrands" [value]="b">{{ b }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Tyre Type</label>
+        <select class="form-select" formControlName="tyreType">
+          <option value="">Select Type</option>
+          <option value="tubeless">Tubeless</option>
+          <option value="tubed">Tubed</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Total Cost</label>
+        <input type="number" class="form-control" formControlName="cost">
+      </div>
+
+      <div class="col-md-12">
+        <label class="form-label">Vendor / Workshop Name</label>
+        <input type="text" class="form-control" formControlName="vendor">
+      </div>
+
+      <div class="col-12 mt-3">
+        <label class="form-label fw-semibold">Upload Bill (Optional)</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*,application/pdf">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="activeTyreModal.dismiss()">Cancel</button>
+  <button class="btn btn-primary" [disabled]="tyreForm.invalid" (click)="save()">Save Record</button>
+</div>

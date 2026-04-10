@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+  {{ fitnessData?.id ? 'Edit' : 'Add' }} Fitness Record
+</h5>
+  <button type="button" class="btn-close" (click)="activeFitnessModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="fitnessForm">
+    <div class="row g-3">
+
+ 
+
+      <div class="col-md-6">
+        <label class="form-label">Issue Date</label>
+        <input type="date" class="form-control" formControlName="issueDate">
+        <div class="text-danger small" *ngIf="fitnessForm.get('issueDate')?.touched && fitnessForm.get('issueDate')?.invalid">
+          Issue date is required.
+        </div>
+      </div>
+   <div class="col-md-6">
+        <label class="form-label">Expiry Date</label>
+        <input type="date" class="form-control" formControlName="expiryDate">
+        <div class="text-danger small" *ngIf="fitnessForm.get('expiryDate')?.touched && fitnessForm.get('expiryDate')?.invalid">
+          Expiry date is required.
+        </div>
+      </div>
+
+   
+
+   
+
+     
+
+      <div class="col-12 mt-3">
+        <label class="form-label fw-semibold">Upload Certificate (Optional)</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*,application/pdf">
+        <small class="text-muted" *ngIf="fitnessForm.get('documentName')?.value">
+          Current file: {{ fitnessForm.get('documentName')?.value }}
+        </small>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="activeFitnessModal.dismiss()">Cancel</button>
+ <button class="btn btn-primary"
+        [disabled]="fitnessForm.invalid || isProcessing"
+        (click)="save()">
+  {{ fitnessData?.id ? 'Update' : 'Save' }}
+</button>
+</div>

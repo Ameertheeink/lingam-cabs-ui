@@ -1,0 +1,103 @@
+<div class="top-0 end-0 m-2 text-end">
+  <div class="btn-group">
+
+    <!-- ✅ ALWAYS SHOW ADD -->
+    <button 
+      class="btn btn-sm btn-primary m-2"
+      (click)="openPollutionModal()"
+      title="Add New Pollution Record">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+
+    <!-- ✅ SHOW ONLY IF DATA EXISTS -->
+    <button *ngIf="pollution"
+            class="btn btn-sm btn-warning m-2"
+            (click)="openPollutionModal(pollution)"
+            title="Edit Pollution Information">
+      <i class="bi bi-pencil"></i>
+    </button>
+
+    <button *ngIf="pollution"
+            class="btn btn-sm btn-danger m-2"
+            (click)="openDeleteModal()"
+            title="Delete Pollution Information">
+      <i class="bi bi-trash"></i>
+    </button>
+
+  </div>
+</div>
+
+
+
+                <div *ngIf="pollution; else noPollutionData">
+
+                  <div class="card shadow-sm border-0">
+                    <div class="card-body">
+
+                      <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                          <div class="p-3 bg-light rounded h-100">
+                            <small class="text-muted">Certificate Issued On</small>
+                            <div class="fw-semibold">
+                              {{ pollution.issueDate | date:'mediumDate' }}
+                            </div>
+                          </div>
+                        </div>
+
+                       
+                        <div class="col-12 col-md-6">
+                          <div class="p-3 bg-light rounded h-100">
+                            <small class="text-muted">Certificate Expire On</small>
+                            <div class="fw-semibold">
+                              {{ pollution.expiryDate | date:'mediumDate' }}
+                            </div>
+                          </div>
+                        </div>
+
+                       
+              
+                      
+
+                        <div class="col-12 col-md-6">
+                          <div class="p-3 bg-light rounded h-100">
+                            <small class="text-muted">Certificate No</small>
+                            <div class="fw-semibold">
+                              {{ pollution.certificateNumber }} KM
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Oil Brand -->
+                      
+
+                        <!-- Vendor -->
+                        <div class="col-12 col-md-6">
+                          <div class="p-3 bg-light rounded h-100">
+                            <small class="text-muted">Vendor</small>
+                            <div class="fw-semibold">
+                              {{ pollution.vendor }}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+               
+   
+
+                      <!-- View Bill Button -->
+                      <div class="mt-3 text-center" >
+                        <button class="btn btn-primary btn-sm px-4" (click)="viewDocument(pollution)" title="View Pollution Document">
+                          <i class="bi bi-file-earmark"></i> View Document
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <ng-template #noPollutionData>
+                  <p class="text-muted text-center mb-0">No Pollution records found.</p>
+                </ng-template>
+
+
