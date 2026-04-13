@@ -2,8 +2,8 @@
   <div class="btn-group">
 
     <!-- ✅ ALWAYS SHOW ADD -->
-    <button 
-      class="btn btn-sm btn-primary m-2"
+    <button *ngIf="!pollution"
+      class="btn btn-sm btn-add m-2"
       (click)="openPollutionModal()"
       title="Add New Pollution Record">
       <i class="bi bi-plus-lg"></i>
@@ -11,14 +11,14 @@
 
     <!-- ✅ SHOW ONLY IF DATA EXISTS -->
     <button *ngIf="pollution"
-            class="btn btn-sm btn-warning m-2"
+            class="btn btn-sm btn-edit m-2"
             (click)="openPollutionModal(pollution)"
             title="Edit Pollution Information">
       <i class="bi bi-pencil"></i>
     </button>
 
     <button *ngIf="pollution"
-            class="btn btn-sm btn-danger m-2"
+            class="btn btn-sm btn-delete m-2"
             (click)="openDeleteModal()"
             title="Delete Pollution Information">
       <i class="bi bi-trash"></i>

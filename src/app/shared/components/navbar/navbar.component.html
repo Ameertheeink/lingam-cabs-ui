@@ -6,39 +6,55 @@
       <button class="btn toggle-btn" (click)="onToggle()">
         <i class="bi bi-list fs-5"></i>
       </button>
-
       <span class="ms-3 fw-semibold page-title">LINGAM CABS</span>
     </div>
 
     <!-- RIGHT -->
     <div class="d-flex align-items-center gap-3">
 
-      <!-- Notification (optional) -->
       <i class="bi bi-bell fs-5 nav-icon"></i>
 
-      <!-- User Dropdown -->
-      <div class="dropdown">
-        <div class="d-flex align-items-center user-box" data-bs-toggle="dropdown">
+      <!-- User Dropdown — NgbDropdown -->
+      <div ngbDropdown class="d-inline-block">
+
+        <div class="d-flex align-items-center user-box" ngbDropdownToggle style="cursor:pointer">
           <i class="bi bi-person-circle fs-4"></i>
-          <span class="ms-2 fw-medium">Ameer</span>
+          <span class="ms-2 fw-medium">{{ loggedInUser }}</span>
           <i class="bi bi-chevron-down ms-1 small"></i>
         </div>
 
-        <ul class="dropdown-menu dropdown-menu-end shadow">
-          <li>
-            <a class="dropdown-item" href="#">
+        <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end shadow">
+
+          <!-- Profile Info -->
+          <li class="px-3 py-2 border-bottom">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-person-circle fs-2 text-secondary"></i>
+              <div>
+                <div class="fw-semibold">{{ loggedInUser }}</div>
+                <div class="text-muted small">{{ userRole }}</div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Profile -->
+          <!-- <li>
+            <button ngbDropdownItem (click)="goToProfile()">
               <i class="bi bi-person me-2"></i> Profile
-            </a>
-          </li>
+            </button>
+          </li> -->
+
+          <!-- <li><hr class="dropdown-divider"></li> -->
+
+          <!-- Logout -->
           <li>
-            <a class="dropdown-item text-danger" (click)="logout()">
+            <button ngbDropdownItem class="text-danger" (click)="logout()">
               <i class="bi bi-box-arrow-right me-2"></i> Logout
-            </a>
+            </button>
           </li>
+
         </ul>
       </div>
 
     </div>
-
   </div>
 </nav>

@@ -2,20 +2,20 @@
   <div class="btn-group">
 
     <!-- ✅ If NO oil → show Add -->
-    <button *ngIf="oil" class="btn btn-sm btn-primary m-2" (click)="openAddOilModal()" title="Add Oil Service">
+    <button *ngIf="!oil" class="btn btn-sm btn-add m-2" (click)="openAddOilModal()" title="Add Oil Service">
       <i class="bi bi-plus-lg"></i>
     </button>
 
     <!-- ✅ If oil exists → show Edit -->
-    <button *ngIf="oil" class="btn btn-sm btn-warning m-2" (click)="openEditOilModal(oil, $event)" title="Edit Oil Service">
+    <button *ngIf="oil" class="btn btn-sm btn-edit m-2" (click)="openEditOilModal(oil, $event)" title="Edit Oil Service">
       <i class="bi bi-pencil"></i>
     </button>
 
     <!-- ✅ If oil exists → show Delete -->
-  <button *ngIf="oil" class="btn btn-sm btn-danger m-2" (click)="openDeleteModal()" title="Delete Oil Service">
+  <button *ngIf="oil" class="btn btn-sm btn-delete m-2" (click)="openDeleteModal()" title="Delete Oil Service">
   <i class="bi bi-trash"></i>
 </button>
- <button *ngIf="oil" class="btn btn-sm btn-danger m-2" (click)="openOilHistoryModal()" title="View Oil Service History">
+ <button *ngIf="oil" class="btn btn-sm btn-history m-2" (click)="openOilHistoryModal()" title="View Oil Service History">
   <i class="bi bi-clock-history"></i>
 </button>
   </div>

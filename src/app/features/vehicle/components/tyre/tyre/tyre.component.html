@@ -2,21 +2,21 @@
     <div class="btn-group" >
 
         <!-- ✅ If NO oil → show Add -->
-        <button  *ngIf="tyre" class="btn btn-sm btn-primary m-2" (click)="openTyreModal()" title="Add Tyre New Tyre Information">
+        <button  *ngIf="!tyre" class="btn btn-sm btn-add m-2" (click)="openTyreModal()" title="Add Tyre New Tyre Information">
             <i class="bi bi-plus-lg"></i>
         </button>
 
         <!-- ✅ If oil exists → show Edit -->
-        <button *ngIf="tyre" class="btn btn-sm btn-warning m-2" (click)="openTyreModal(tyre)" title="Edit Tyre Information">
+        <button *ngIf="tyre" class="btn btn-sm btn-edit m-2" (click)="openTyreModal(tyre)" title="Edit Tyre Information">
             <i class="bi bi-pencil"></i>
         </button>
 
         <!-- ✅ If oil exists → show Delete -->
-        <button  *ngIf="tyre" class="btn btn-sm btn-danger m-2" (click)="openDeleteModal()" title="Delete Tyre Information">
+        <button  *ngIf="tyre" class="btn btn-sm btn-delete m-2" (click)="openDeleteModal()" title="Delete Tyre Information">
             <i class="bi bi-trash"></i>
         </button>
 
-         <button *ngIf="tyre" class="btn btn-sm btn-danger m-2" (click)="openTyreHistoryModal()" title="View Tyre Service History">
+         <button *ngIf="tyre" class="btn btn-sm btn-history m-2" (click)="openTyreHistoryModal()" title="View Tyre Service History">
   <i class="bi bi-clock-history"></i>
 </button>
 

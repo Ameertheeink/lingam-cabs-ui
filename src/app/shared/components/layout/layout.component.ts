@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
-  isCollapsed = false;
+  isSidebarCollapsed = false;  // ✅ add this
 
-  toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
+  onToggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;  // ✅ add this
   }
 }

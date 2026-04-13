@@ -1,0 +1,26 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a2e;
+}
+
+.login-card {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+  background-color: #970747;
+  border-color: #970747;
+}
+
+.btn-primary:hover {
+  background-color: #C2185B;
+  border-color: #C2185B;
+}

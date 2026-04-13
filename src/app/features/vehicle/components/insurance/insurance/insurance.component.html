@@ -1,15 +1,15 @@
 <div class="top-0 end-0 m-2 text-end">
     <div class="btn-group">
-        <button *ngIf="!insurance" class="btn btn-sm btn-primary m-2" (click)="openInsuranceModal()" title="Add Insurance">
+        <button *ngIf="!insurance" class="btn btn-sm btn-add m-2" (click)="openInsuranceModal()" title="Add Insurance">
              <i class="bi bi-plus-lg"></i>
             
         </button>
 
-        <button *ngIf="insurance" class="btn btn-sm btn-warning m-2" (click)="openInsuranceModal(insurance)"  title="Edit Insurance" >
+        <button *ngIf="insurance" class="btn btn-sm btn-edit m-2" (click)="openInsuranceModal(insurance)"  title="Edit Insurance" >
             <i class="bi bi-pencil"></i>
         </button>
 
-        <button *ngIf="insurance" class="btn btn-sm btn-danger m-2" (click)="openDeleteModal()" title="Delete Insurance">
+        <button *ngIf="insurance" class="btn btn-sm btn-delete m-2" (click)="openDeleteModal()" title="Delete Insurance">
             <i class="bi bi-trash"></i>
         </button>
     </div>

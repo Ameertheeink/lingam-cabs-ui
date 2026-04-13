@@ -73,3 +73,6 @@
 .navbar {
   z-index: 1000;
 }
+[ngbDropdownToggle]::after {
+  display: none !important;
+}

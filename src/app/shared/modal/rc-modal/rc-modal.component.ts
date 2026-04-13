@@ -55,7 +55,7 @@ initForm() {
     manufacturingMonthYear: [''],
 
     cubicCapacity: [null, [Validators.min(0)]],
-    seatingCapacity: [null, [Validators.min(1)]],
+    seatingCapacity: [null, ''],
 
     // Owner Details
     ownerName: ['', Validators.required],

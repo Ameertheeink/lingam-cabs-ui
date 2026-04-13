@@ -3,7 +3,7 @@
 
     <!-- ➕ ADD -->
     <button *ngIf="!fitness"
-            class="btn btn-sm btn-primary m-2"
+            class="btn btn-sm btn-add m-2"
             (click)="openFitnessModal()"
             ngbTooltip="Add FC Details"
             placement="top">
@@ -12,7 +12,7 @@
 
     <!-- ✏️ EDIT -->
     <button *ngIf="fitness"
-            class="btn btn-sm btn-warning m-2"
+            class="btn btn-sm btn-edit m-2"
             (click)="openFitnessModal(fitness)"
             ngbTooltip="Edit FC Details"
             placement="top">
@@ -21,7 +21,7 @@
 
     <!-- 🗑 DELETE -->
     <button *ngIf="fitness"
-            class="btn btn-sm btn-danger m-2"
+            class="btn btn-sm btn-delete m-2"
             (click)="openDeleteModal()"
             ngbTooltip="Delete FC Details"
             placement="top">

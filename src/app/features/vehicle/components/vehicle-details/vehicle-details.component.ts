@@ -14,6 +14,7 @@ import { Vehicle } from '../../../../shared/models/vehicle.model';
 import { VehicleService } from '../../../../core/services/vehicle.service';
 import { LoaderService } from '../../../../shared/services/loader.service';
 import { DeleteConfirmComponent } from '../../../../shared/modal/delete-confirm/delete-confirm.component';
+import { ReminderService } from '../../../../core/services/reminder.service';
 
 
 
@@ -43,6 +44,7 @@ throw new Error('Method not implemented.');
   loadingImages = false;
   deleteModal: any;
   showFileInput = true;
+  reminders: { label: string; color: string }[] = [];
 
 
   constructor(
@@ -51,7 +53,7 @@ throw new Error('Method not implemented.');
     private location: Location,
     private toastr: ToastrService,
     private loaderService: LoaderService,
-   
+   private reminderService: ReminderService,
  
      private modalService: NgbModal
 
@@ -64,9 +66,59 @@ throw new Error('Method not implemented.');
     this.vehicleId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadVehicle();
     this.loadImages();
+    this.loadReminders();  
     
      
   }
+
+  loadReminders(): void {
+  this.reminders = [];
+
+  // Oil
+  this.reminderService.getOilReminderByVehicle(this.vehicleId).subscribe({
+    next: (res) => {
+      if (res.success && res.data) {
+        this.reminders.push({ label: '⚠ Oil Change Required', color: 'info' });
+      }
+    }
+  });
+
+  // Insurance
+  this.reminderService.getInsuranceReminderByVehicle(this.vehicleId).subscribe({
+    next: (res) => {
+      if (res.success && res.data) {
+        this.reminders.push({ label: '⚠ Insurance Renewal', color: 'warning' });
+      }
+    }
+  });
+
+  // Tyre
+  this.reminderService.getTyreReminderByVehicle(this.vehicleId).subscribe({
+    next: (res) => {
+      if (res.success && res.data) {
+        this.reminders.push({ label: '⚠ Tyre Check Required', color: 'secondary' });
+      }
+    }
+  });
+
+  // Fitness / FC
+  this.reminderService.getFitnessReminderByVehicle(this.vehicleId).subscribe({
+    next: (res) => {
+      if (res.success && res.data) {
+        this.reminders.push({ label: '⚠ FC Renewal Due', color: 'danger' });
+      }
+    }
+  });
+
+  // Pollution
+  this.reminderService.getPollutionReminderByVehicle(this.vehicleId).subscribe({
+    next: (res) => {
+      if (res.success && res.data) {
+        this.reminders.push({ label: '⚠ Pollution Certificate Due', color: 'success' });
+      }
+    }
+  });
+}
 
   // ===============================
   // 🔹 Load Vehicle Details

@@ -19,57 +19,65 @@ export class ErrorInterceptor implements HttpInterceptor {
     private router: Router
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
+  return next.handle(req).pipe(
+    catchError((error: HttpErrorResponse) => {
 
-        let errorMessage = 'Something went wrong!';
+      // ✅ Skip toast for reminder APIs — 404 is expected when no reminder
+      const silentUrls = [
+        '/reminders',
+        '/reminders/top',
+        '/reminders/vehicle'
+      ];
 
-        if (error.error instanceof ErrorEvent) {
-          // 🔹 Client-side error
-          errorMessage = error.error.message;
-        } else {
-          // 🔹 Server-side error
-          switch (error.status) {
+      const isSilent = silentUrls.some(url => req.url.includes(url));
 
-            case 400:
-              errorMessage = 'Bad Request';
-              break;
+      let errorMessage = 'Something went wrong!';
 
-            case 401:
-              errorMessage = 'Unauthorized - Please login again';
-              this.router.navigate(['/login']);
-              break;
+      if (error.error instanceof ErrorEvent) {
+        errorMessage = error.error.message;
+      } else {
+        switch (error.status) {
 
-            case 403:
-              errorMessage = 'Access Denied';
-              break;
+          case 400:
+            errorMessage = error.error?.message || 'Bad Request';
+            break;
 
-            case 404:
-              errorMessage = 'API Not Found';
-              break;
+          case 401:
+            errorMessage = 'Unauthorized - Please login again';
+            this.router.navigate(['/login']);
+            break;
 
-            case 500:
-              errorMessage = 'Internal Server Error';
-              break;
+          case 403:
+            errorMessage = 'Access Denied';
+            break;
 
-            case 0:
-              errorMessage = 'Server not reachable (Connection refused)';
-              break;
+          case 404:
+            errorMessage = 'Not Found';
+            break;
 
-            default:
-              errorMessage = `Error: ${error.status}`;
-          }
+          case 500:
+            errorMessage = 'Internal Server Error';
+            break;
+
+          case 0:
+            errorMessage = 'Server not reachable (Connection refused)';
+            break;
+
+          default:
+            errorMessage = `Error: ${error.status}`;
         }
+      }
 
-        // 🔔 Show toast message
+      // ✅ Only show toast if not a silent URL
+      if (!isSilent) {
         this.toastr.error(errorMessage);
+      }
 
-        console.error('HTTP Error:', error);
-
-        return throwError(() => error);
-      })
-    );
-  }
+      console.error('HTTP Error:', error);
+      return throwError(() => error);
+    })
+  );
+}
 }

@@ -9,40 +9,71 @@
 }
 
 
+/* ✅ View */
 .btn-view {
-  background-color: #ffffff;
-  border: 1px solid var(--primary-main);
-  color: var(--primary-main);
-}
-
-.btn-view:hover {
-  background-color: var(--primary-main);
-  color: #ffffff;
-}
-
-.btn-edit {
-  background-color: #FFC107;
+  background-color: #0d6efd;
+  color: white;
   border: none;
-  color: #000;
+}
+.btn-view:hover {
+  background-color: #0b5ed7;
+  color: white;
 }
 
+/* ✅ Add */
+.btn-add {
+  background-color: #970747;
+  color: white;
+  border: none;
+}
+.btn-add:hover {
+  background-color: #C2185B;
+  color: white;
+}
+
+/* ✅ Edit */
+.btn-edit {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+}
+.btn-edit:hover {
+  background-color: #d97706;
+  color: white;
+}
+
+/* ✅ Delete */
 .btn-delete {
   background-color: #dc3545;
+  color: white;
   border: none;
-  color: #ffffff;
 }
-.btn-add {
-  background-color: var(--primary-main);
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
+.btn-delete:hover {
+  background-color: #bb2d3b;
+  color: white;
 }
 
-.btn-add:hover {
-  background-color: var(--primary-dark);
+/* ✅ History */
+.btn-history {
+  background-color: #6f42c1;
+  color: white;
+  border: none;
+}
+.btn-history:hover {
+  background-color: #5a32a3;
+  color: white;
 }
 
+/* ✅ Upload / Document */
+.btn-upload {
+  background-color: #0d9488;
+  color: white;
+  border: none;
+}
+.btn-upload:hover {
+  background-color: #0f766e;
+  color: white;
+}
 .info-box {
   background: #ffffff;
   padding: 16px;

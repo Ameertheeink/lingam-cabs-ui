@@ -51,26 +51,29 @@
 
         <!-- Reminder Section -->
         <div class="mt-4">
-          <h6 class="fw-semibold mb-2">Reminders</h6>
+  <h6 class="fw-semibold mb-2">Reminders</h6>
 
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge bg-danger-subtle text-danger px-3 py-2">
-              ⚠ FC Renewal Due
-            </span>
+  <!-- No reminders -->
+  <div *ngIf="reminders.length === 0" class="text-muted small">
+    ✅ No pending reminders
+  </div>
 
-            <span class="badge bg-warning-subtle text-warning px-3 py-2">
-              ⚠ Insurance Renewal
-            </span>
-
-            <span class="badge bg-info-subtle text-info px-3 py-2">
-              ⚠ Oil Change Required
-            </span>
-
-            <span class="badge bg-secondary-subtle text-secondary px-3 py-2">
-              ⚠ Tyre Check Required
-            </span>
-          </div>
-        </div>
+  <!-- Dynamic badges -->
+  <div class="d-flex flex-wrap gap-2">
+    <span
+      *ngFor="let reminder of reminders"
+      class="badge px-3 py-2"
+      [ngClass]="{
+        'bg-danger-subtle text-danger'       : reminder.color === 'danger',
+        'bg-warning-subtle text-warning'     : reminder.color === 'warning',
+        'bg-info-subtle text-info'           : reminder.color === 'info',
+        'bg-secondary-subtle text-secondary' : reminder.color === 'secondary',
+        'bg-success-subtle text-success'     : reminder.color === 'success'
+      }">
+      {{ reminder.label }}
+    </span>
+  </div>
+</div>
 
       </div>
 
