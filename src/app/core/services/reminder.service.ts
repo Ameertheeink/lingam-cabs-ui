@@ -35,4 +35,9 @@ export class ReminderService {
       `${this.baseUrl}/pollution/reminders/top`
     );
   }
+  getFitnessReminders() {
+    return this.http.get<ApiResponse<any>>(
+      `${this.baseUrl}/fitness-certificates/reminders/top`
+    );
+  }
 }

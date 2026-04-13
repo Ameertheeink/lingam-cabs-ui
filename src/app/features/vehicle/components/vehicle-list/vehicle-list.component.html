@@ -58,7 +58,7 @@
               </td>
               <td data-label="Vehicle ID">{{ vehicle.id }}</td>
               <!-- <td>{{ vehicle.ownerName }}</td> -->
-              <td data-label="Type">{{ vehicle.vehicleType }}</td>
+              <!-- <td data-label="Type">{{ vehicle.vehicleType }}</td> -->
               <!-- <td>{{ vehicle.brand }} {{ vehicle.model }}</td> -->
               <!-- <td>{{ vehicle.fuelType }}</td> -->
               <td data-label="Current KM">{{ vehicle.currentKm | number }} km</td>
@@ -174,7 +174,7 @@
 
             </div>
 
-
+<!-- 
             <div class="col-md-6">
               <select class="form-select" formControlName="vehicleType">
                 <option value="">Select Vehicle Type</option>
@@ -183,21 +183,21 @@
                 <option>Truck</option>
                 <option>Bus</option>
               </select>
-            </div>
+            </div> -->
 
 
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <select class="form-select" formControlName="brand" (change)="onBrandChange()">
                 <option value="">Select Brand</option>
                 <option *ngFor="let b of carBrands" [value]="b.brand">
                   {{ b.brand }}
                 </option>
               </select>
-            </div>
+            </div> -->
 
 
 
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <select class="form-select" formControlName="model" [disabled]="models.length === 0">
 
                 <option value="">Select Model</option>
@@ -207,11 +207,11 @@
                 </option>
 
               </select>
-            </div>
+            </div> -->
 
 
 
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <select class="form-select" formControlName="fuelType">
                 <option value="">Select Fuel Type</option>
                 <option>Petrol</option>
@@ -219,9 +219,9 @@
                 <option>CNG</option>
                 <option>Battery</option>
               </select>
-            </div>
+            </div> -->
 
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <input type="number" class="form-control" placeholder="Manufacturing Year"
                 formControlName="manufacturingYear">
 
@@ -229,10 +229,10 @@
                 *ngIf="vehicleForm.get('manufacturingYear')?.invalid && vehicleForm.get('manufacturingYear')?.touched">
                 Enter valid 4-digit year
               </div>
-            </div>
+            </div> -->
 
 
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <select class="form-select" formControlName="color">
                 <option value="">Select Color</option>
                 <option>White</option>
@@ -241,7 +241,7 @@
                 <option>Blue</option>
                 <option>Red</option>
               </select>
-            </div>
+            </div> -->
 
 
             <div class="col-md-6">
@@ -298,7 +298,7 @@
 
       </div>
 
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">
           Skip
         </button>
@@ -307,7 +307,7 @@
           Upload
         </button>
 
-      </div>
+      </div> -->
 
     </div>
   </div>

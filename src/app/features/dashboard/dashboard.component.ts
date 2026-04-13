@@ -6,6 +6,7 @@ import { OilReminder } from '../../shared/models/oil-reminder.model';
 import { PollutionReminder } from '../../shared/models/pollution-reminder';
 import { TyreReminder } from '../../shared/models/tyre-reminder.model';
 import { LoaderService } from '../../shared/services/loader.service';
+import { FitnessReminder } from '../../shared/models/fitness-reminder';
 
 
 
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   tyreReminder!: TyreReminder;
   insuranceReminder!: InsuranceReminder; // can create a specific model later
   pollutionReminder!: PollutionReminder; // can create a specific model later
+  fitnessReminder!: FitnessReminder; // can create a specific model later
 
   constructor(
     private reminderService: ReminderService,
@@ -41,7 +43,8 @@ export class DashboardComponent implements OnInit {
       oil: this.reminderService.getOilTopReminder(),
       tyre: this.reminderService.getTyreServiceReminders(),
       insurance: this.reminderService.getInsuranceReminders(),
-      pollution: this.reminderService.getPollutionReminders()
+      pollution: this.reminderService.getPollutionReminders(),
+      fitness: this.reminderService.getFitnessReminders()
 
     }).subscribe({
 
@@ -59,6 +62,9 @@ export class DashboardComponent implements OnInit {
         }
           if (res.pollution.success) { 
           this.pollutionReminder = res.pollution.data;
+           }
+            if (res.fitness.success) {  
+          this.fitnessReminder = res.fitness.data;
            }
 
 

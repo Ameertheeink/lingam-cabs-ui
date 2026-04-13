@@ -83,20 +83,7 @@ totalElements = 0;
   ]
 ],
 
-      vehicleType: ['', Validators.required],
-      brand: ['', Validators.required],
-      model: ['', Validators.required],
-      fuelType: ['', Validators.required],
-      manufacturingYear: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[0-9]{4}$'),
-          Validators.min(1900),
-          Validators.max(new Date().getFullYear()),
-        ],
-      ],
-      color: ['', Validators.required],
+      
       currentKm: [
         '',
         [
@@ -347,13 +334,13 @@ populateFormAndOpenModal(vehicle: Vehicle) {
   this.vehicleForm.patchValue(vehicle);
 
   // Set models based on brand
-  const brandObj = this.carBrands.find(b => b.brand === vehicle.brand);
-  this.models = brandObj ? brandObj.models : [];
+  // const brandObj = this.carBrands.find(b => b.brand === vehicle.brand);
+  // this.models = brandObj ? brandObj.models : [];
 
   // Patch model again
-  this.vehicleForm.patchValue({
-    model: vehicle.model
-  });
+  // this.vehicleForm.patchValue({
+  //   model: vehicle.model
+  // });
 
   const modal = new bootstrap.Modal(
     document.getElementById('addVehicleModal')
@@ -421,12 +408,7 @@ populateFormAndOpenModal(vehicle: Vehicle) {
     vehicleNumber: '',
     ownerName: '',
     mobileNumber: '',
-    vehicleType: '',
-    brand: '',
-    model: '',
-    fuelType: '',
-    manufacturingYear: '',
-    color: '',
+  
     currentKm: ''
   });
 
